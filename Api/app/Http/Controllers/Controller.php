@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Helpers\Variable;
+use App\Models\JadwalPelajaran;
+use App\Models\Siswa;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -220,6 +222,36 @@ class Controller extends BaseController
         }
     }
 
+    public function getSiswaByUserId ($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user) {
+            $siswa = Siswa::where('user_id', $user->id)->first();
+            if ($siswa) {
+                return $siswa;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public function getJadwalBySiswaId($siswa_id)
+    {
+        $siswa = Siswa::find($siswa_id);
+        if ($siswa) {
+            $jadwal = JadwalPelajaran::where('kelas_id', $siswa->kelas_id)->first();
+            if ($jadwal) {
+                return $jadwal;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+    }
     // public function getCompanyByEmployee($employee_id){
     //     $employee = Employee::find($employee_id);
     //     $user = User::find($employee->user_id);

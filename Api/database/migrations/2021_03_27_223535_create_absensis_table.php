@@ -16,6 +16,7 @@ class CreateAbsensisTable extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('siswa_id')->unsigned();
+            $table->integer('jadwal_pelajaran_id')->unsigned();
             $table->string('lat');
             $table->string('lng');
             $table->timestamp('time');
@@ -23,6 +24,7 @@ class CreateAbsensisTable extends Migration
             $table->timestamps();
 
             $table->foreign('siswa_id')->references('id')->on('siswas');
+            $table->foreign('jadwal_pelajaran_id')->references('id')->on('jadwal_pelajarans');
         });
     }
 
