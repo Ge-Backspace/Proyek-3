@@ -1,0 +1,194 @@
+[
+  {
+    "name": "company_check",
+    "path": "/company_check",
+    "component": "F:\\\\mroyek3\\\\pages\\\\company_check.vue",
+    "chunkName": "pages/company_check"
+  },
+  {
+    "name": "LandingPage",
+    "path": "/LandingPage",
+    "component": "F:\\\\mroyek3\\\\pages\\\\LandingPage.vue",
+    "chunkName": "pages/LandingPage"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "F:\\\\mroyek3\\\\pages\\\\login.vue",
+    "chunkName": "pages/login"
+  },
+  {
+    "name": "profile",
+    "path": "/profile",
+    "component": "F:\\\\mroyek3\\\\pages\\\\profile.vue",
+    "chunkName": "pages/profile"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "F:\\\\mroyek3\\\\pages\\\\register.vue",
+    "chunkName": "pages/register"
+  },
+  {
+    "name": "register_account",
+    "path": "/register_account",
+    "component": "F:\\\\mroyek3\\\\pages\\\\register_account.vue",
+    "chunkName": "pages/register_account"
+  },
+  {
+    "name": "register_company",
+    "path": "/register_company",
+    "component": "F:\\\\mroyek3\\\\pages\\\\register_company.vue",
+    "chunkName": "pages/register_company"
+  },
+  {
+    "name": "reset-password",
+    "path": "/reset-password",
+    "component": "F:\\\\mroyek3\\\\pages\\\\reset-password.vue",
+    "chunkName": "pages/reset-password"
+  },
+  {
+    "name": "test",
+    "path": "/test",
+    "component": "F:\\\\mroyek3\\\\pages\\\\test.vue",
+    "chunkName": "pages/test"
+  },
+  {
+    "name": "admin-absen",
+    "path": "/admin/absen",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\absen\\\\index.vue",
+    "chunkName": "pages/admin/absen/index"
+  },
+  {
+    "name": "admin-beranda",
+    "path": "/admin/beranda",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\beranda.vue",
+    "chunkName": "pages/admin/beranda"
+  },
+  {
+    "name": "admin-berita",
+    "path": "/admin/berita",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\berita.vue",
+    "chunkName": "pages/admin/berita"
+  },
+  {
+    "name": "admin-company1",
+    "path": "/admin/company1",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\company1.vue",
+    "chunkName": "pages/admin/company1"
+  },
+  {
+    "name": "admin-informasi",
+    "path": "/admin/informasi",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\informasi.vue",
+    "chunkName": "pages/admin/informasi"
+  },
+  {
+    "name": "admin-jadwalMapel",
+    "path": "/admin/jadwalMapel",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\jadwalMapel\\\\index.vue",
+    "chunkName": "pages/admin/jadwalMapel/index"
+  },
+  {
+    "name": "admin-kegiatan",
+    "path": "/admin/kegiatan",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\kegiatan.vue",
+    "chunkName": "pages/admin/kegiatan"
+  },
+  {
+    "name": "admin-mapel",
+    "path": "/admin/mapel",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\mapel\\\\index.vue",
+    "chunkName": "pages/admin/mapel/index"
+  },
+  {
+    "name": "admin-permission",
+    "path": "/admin/permission",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\permission.vue",
+    "chunkName": "pages/admin/permission"
+  },
+  {
+    "name": "admin-salary",
+    "path": "/admin/salary",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\salary.vue",
+    "chunkName": "pages/admin/salary"
+  },
+  {
+    "name": "admin-shift",
+    "path": "/admin/shift",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\shift.vue",
+    "chunkName": "pages/admin/shift"
+  },
+  {
+    "name": "admin-test",
+    "path": "/admin/test",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\test.vue",
+    "chunkName": "pages/admin/test"
+  },
+  {
+    "name": "admin-users",
+    "path": "/admin/users",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\users.vue",
+    "chunkName": "pages/admin/users"
+  },
+  {
+    "name": "admin-master-masterAbsen",
+    "path": "/admin/master/masterAbsen",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterAbsen.vue",
+    "chunkName": "pages/admin/master/masterAbsen"
+  },
+  {
+    "name": "admin-master-masterJadwal",
+    "path": "/admin/master/masterJadwal",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterJadwal.vue",
+    "chunkName": "pages/admin/master/masterJadwal"
+  },
+  {
+    "name": "admin-master-MasterJadwalMapel",
+    "path": "/admin/master/MasterJadwalMapel",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\MasterJadwalMapel.vue",
+    "chunkName": "pages/admin/master/MasterJadwalMapel"
+  },
+  {
+    "name": "admin-master-masterJurusan",
+    "path": "/admin/master/masterJurusan",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterJurusan.vue",
+    "chunkName": "pages/admin/master/masterJurusan"
+  },
+  {
+    "name": "admin-master-masterKelas",
+    "path": "/admin/master/masterKelas",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterKelas.vue",
+    "chunkName": "pages/admin/master/masterKelas"
+  },
+  {
+    "name": "admin-master-masterLokasi",
+    "path": "/admin/master/masterLokasi",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterLokasi.vue",
+    "chunkName": "pages/admin/master/masterLokasi"
+  },
+  {
+    "name": "admin-master-masterMapel",
+    "path": "/admin/master/masterMapel",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterMapel.vue",
+    "chunkName": "pages/admin/master/masterMapel"
+  },
+  {
+    "name": "admin-master-masterSekolah",
+    "path": "/admin/master/masterSekolah",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterSekolah.vue",
+    "chunkName": "pages/admin/master/masterSekolah"
+  },
+  {
+    "name": "admin-master-masterSiswa",
+    "path": "/admin/master/masterSiswa",
+    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterSiswa.vue",
+    "chunkName": "pages/admin/master/masterSiswa"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "F:\\\\mroyek3\\\\pages\\\\index.vue",
+    "chunkName": "pages/index"
+  }
+]

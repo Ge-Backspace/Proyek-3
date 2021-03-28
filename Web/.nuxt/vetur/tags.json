@@ -1,0 +1,86 @@
+{
+  "Logo": {
+    "description": "Auto imported from F:/mroyek3/components/Logo.vue"
+  },
+  "LazyLogo": {
+    "description": "Auto imported from F:/mroyek3/components/Logo.vue"
+  },
+  "Menu": {
+    "description": "Auto imported from F:/mroyek3/components/Menu.js"
+  },
+  "LazyMenu": {
+    "description": "Auto imported from F:/mroyek3/components/Menu.js"
+  },
+  "Sidebar": {
+    "description": "Auto imported from F:/mroyek3/components/Sidebar.vue"
+  },
+  "LazySidebar": {
+    "description": "Auto imported from F:/mroyek3/components/Sidebar.vue"
+  },
+  "UploadService": {
+    "description": "Auto imported from F:/mroyek3/components/UploadService.js"
+  },
+  "LazyUploadService": {
+    "description": "Auto imported from F:/mroyek3/components/UploadService.js"
+  },
+  "ChartBar": {
+    "description": "Auto imported from F:/mroyek3/components/chart/chart-bar.vue"
+  },
+  "LazyChartBar": {
+    "description": "Auto imported from F:/mroyek3/components/chart/chart-bar.vue"
+  },
+  "ChartDoughnut": {
+    "description": "Auto imported from F:/mroyek3/components/chart/chart-doughnut.vue"
+  },
+  "LazyChartDoughnut": {
+    "description": "Auto imported from F:/mroyek3/components/chart/chart-doughnut.vue"
+  },
+  "ChartLine": {
+    "description": "Auto imported from F:/mroyek3/components/chart/chart-line.vue"
+  },
+  "LazyChartLine": {
+    "description": "Auto imported from F:/mroyek3/components/chart/chart-line.vue"
+  },
+  "FooterAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/FooterAfsen.vue"
+  },
+  "LazyFooterAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/FooterAfsen.vue"
+  },
+  "HeaderAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/HeaderAfsen.vue"
+  },
+  "LazyHeaderAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/HeaderAfsen.vue"
+  },
+  "HelloWorld": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/HelloWorld.vue"
+  },
+  "LazyHelloWorld": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/HelloWorld.vue"
+  },
+  "HeroAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/HeroAfsen.vue"
+  },
+  "LazyHeroAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/HeroAfsen.vue"
+  },
+  "InstaAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/InstaAfsen.vue"
+  },
+  "LazyInstaAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/InstaAfsen.vue"
+  },
+  "MidAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/MidAfsen.vue"
+  },
+  "LazyMidAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/MidAfsen.vue"
+  },
+  "PartnerAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/PartnerAfsen.vue"
+  },
+  "LazyPartnerAfsen": {
+    "description": "Auto imported from F:/mroyek3/components/LandingPage/PartnerAfsen.vue"
+  }
+}
