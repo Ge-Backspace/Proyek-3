@@ -28,7 +28,7 @@
                   </el-date-picker>
                 </div>
                 <div class="col-md-3">
-                  <span>Pilih Mata Pelajaran</span>
+                  <span>Pilih Kelas</span>
                   <br />
                   <el-select
                     v-model="select"
@@ -88,147 +88,102 @@
             <p style="font-weight: bold" class="text-center">
               {{ month(getReportAttendance.data.start_date) }}
             </p>
-            <el-table
-              v-loading="getLoader"
-              :data="getReportAttendance.data.data"
-              style="width: 100%"
-              class="table-striped"
-            >
-              <el-table-column label="Nama" width="200px">
-                <template slot-scope="scope">
-                  <div>
-                    {{ scope.row.name }}
-                  </div>
-                </template>
-              </el-table-column>
-              <el-table-column
-                v-for="(h, i) in getReportAttendance.data.dates"
-                :data="h"
-                :key="i"
-                :label="dateLabel(h)"
-                width="110px"
-              >
-                <template slot-scope="scope">
-                  <div v-if="cColumn(scope.row.checkins[i]) == 0">
-                    <vs-avatar
-                      primary
-                      size="20"
-                      style="height: 20px; width: 80px; border-radius: 15px"
-                      @click="
-                        detailDialog = true;
-                        detil(scope.row.checkins[i]);
-                      "
-                      >excelent</vs-avatar
-                    >
-                  </div>
-                  <div v-else-if="cColumn(scope.row.checkins[i]) == 1">
-                    <vs-avatar
-                      success
-                      size="20"
-                      style="height: 20px; width: 80px; border-radius: 15px"
-                      @click="detailDialog = true"
-                      >normal</vs-avatar
-                    >
-                  </div>
-                  <div v-else-if="cColumn(scope.row.checkins[i]) == 2">
-                    <vs-avatar
-                      warn
-                      size="20"
-                      style="height: 20px; width: 80px; border-radius: 15px"
-                      @click="
-                        detailDialog = true;
-                        detil(scope.row.checkins[i]);
-                        request = true;
-                      "
-                      >late</vs-avatar
-                    >
-                  </div>
-                  <div v-else-if="cColumn(scope.row.checkins[i]) == 3">
-                    <vs-avatar
-                      color="#31B4AC"
-                      size="20"
-                      style="height: 20px; width: 80px; border-radius: 15px"
-                      @click="
-                        detailDialog = true;
-                        requestCuti = true;
-                      "
-                      >leave</vs-avatar
-                    >
-                  </div>
-                  <div v-else-if="cColumn(scope.row.checkins[i]) == 4">
-                    <vs-avatar
-                      size="20"
-                      info
-                      style="height: 20px; width: 80px; border-radius: 15px"
-                      >weekend</vs-avatar
-                    >
-                  </div>
-                  <div v-else>
-                    <vs-avatar
-                      size="20"
-                      danger
-                      style="height: 20px; width: 80px; border-radius: 15px"
-                      @click="detil(scope.row.checkins[i])"
-                      >absent</vs-avatar
-                    >
-                  </div>
-                </template>
-              </el-table-column>
-            </el-table>
+            <vs-table striped>
+              <template #thead>
+                <vs-tr>
+                  <vs-th>Mata Pelajaran</vs-th>
+                  <vs-th>Kelas</vs-th>
+                  <vs-th>Semester</vs-th>
+                  <vs-th>Mulai</vs-th>
+                  <vs-th>Selesai</vs-th>
+                  <vs-th>Tanggal</vs-th>
+                  <vs-th>Action</vs-th>
+                </vs-tr>
+              </template>
+              <template #tbody>
+                <vs-tr :key="i" v-for="(tr, i) in getJadwal.data" :data="tr">
+                  <vs-td>
+                    {{ tr.name_pelajaran }}
+                  </vs-td>
+                  <vs-td>
+                    {{ tr.kelas_name }}
+                  </vs-td>
+                  <vs-td>
+                    {{ tr.semester_name }}
+                  </vs-td>
+                  <vs-td>
+                    {{ tr.schedule_in }}
+                  </vs-td>
+                  <vs-td>
+                    {{ tr.schedule_out }}
+                  </vs-td>
+                  <vs-td>
+                    {{ tr.date }}
+                  </vs-td>
+                  <vs-td>
+                    <el-tooltip content="Edit" placement="top-start" effect="dark">
+                      <el-button size="mini" @click="edit(tr)" icon="fa fa-edit"></el-button>
+                    </el-tooltip>
+
+                    <el-tooltip content="Delete" placement="top-start" effect="dark">
+                      <el-button size="mini" type="primary" @click="deleteJadwal(tr.id)" icon="fa fa-trash">
+                      </el-button>
+                    </el-tooltip>
+                  </vs-td>
+                </vs-tr>
+              </template>
+              <template #footer>
+                <vs-row>
+                  <vs-col w="2">
+                    <small>Total : {{getJadwal.total}} Data</small>
+                  </vs-col>
+                  <vs-col w="10">
+                    <vs-pagination v-model="page" :length="Math.ceil(getJadwal.total / table.max)" />
+                  </vs-col>
+                </vs-row>
+              </template>
+            </vs-table>
           </el-card>
         </div>
       </div>
     </div>
-    <vs-dialog v-model="detailDialog">
-      <template #header>
-        <h4 class="not-margin">
-          <b>{{ dialog.date }}</b>
-        </h4>
-      </template>
+    <el-tooltip class="item" effect="dark" content="Add New Kelas" placement="top-start">
+      <a class="float" @click="jadwalDialog = true; titleDialog = 'Tambah Kelas'">
+        <i class="el-icon-plus my-float"></i>
+      </a>
+    </el-tooltip>
+    <!-- End floating button -->
 
+    <vs-dialog v-model="jadwalDialog" :width="$store.state.drawer.mode === 'mobile' ? '80%' : '60%'"
+      @close="resetForm()">
+      <template #header>
+        <h1 class="not-margin">
+          {{titleDialog}}
+        </h1>
+      </template>
       <div class="con-form">
-        <vs-col
-          vs-type="flex"
-          vs-justify="center"
-          vs-align="center"
-          style="padding: 5px"
-        >
-          <label><b>Check-In Time</b></label>
-          <p style="font-size: 14px">{{ dialog.checkin_time }}</p>
-        </vs-col>
-        <vs-col
-          vs-type="flex"
-          vs-justify="center"
-          vs-align="center"
-          w="6"
-          style="padding: 5px"
-        >
-          <label><b>Check-Out Time</b></label>
-          <p style="font-size: 14px">{{ dialog.checkout_time }}</p>
-        </vs-col>
-        <vs-col
-          v-if="request"
-          vs-type="flex"
-          vs-justify="center"
-          vs-align="center"
-          w="6"
-          style="padding: 5px"
-        >
-          <label><b>Reason</b></label>
-          <p style="font-size: 14px">progress</p>
-        </vs-col>
-        <vs-col
-          v-if="requestCuti"
-          vs-type="flex"
-          vs-justify="center"
-          vs-align="center"
-          w="6"
-          style="padding: 5px"
-        >
-          <label><b>Cuti</b></label>
-          <p style="font-size: 14px">progress</p>
-        </vs-col>
+        <vs-row>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="6" style="padding:5px">
+            <label>Nama Kelas</label>
+            <vs-input type="text" v-model="form.name" placeholder="Masukkan Nama Kelas"></vs-input>
+          </vs-col>
+        </vs-row>
       </div>
+
+      <template #footer>
+        <div class="footer-dialog">
+          <vs-row>
+            <vs-col w="6" style="padding:5px">
+              <vs-button block :loading="btnLoader" @click="onSubmit('update')" v-if="isUpdate">Update</vs-button>
+              <vs-button block :loading="btnLoader" @click="onSubmit('store')" v-else>Simpan</vs-button>
+            </vs-col>
+            <vs-col w="6" style="padding:5px">
+              <vs-button block border @click="jadwalDialog = false; resetForm()">Batal</vs-button>
+            </vs-col>
+          </vs-row>
+          <div>&nbsp;</div>
+        </div>
+      </template>
     </vs-dialog>
   </div>
 </template>
@@ -242,94 +197,154 @@ export default {
   layout: "admin",
   components: {},
   data() {
-    return {
-      request: false,
-      requestCuti: false,
-      active: "",
-      select: "",
-      api_url: config.baseApiUrl,
-      table: {
-        max: 10,
-      },
-      page: 1,
-      titleDialog: "Tambah Berita",
-      detailDialog: false,
-      search: "",
-      isUpdate: false,
-      btnLoader: false,
-      files: [],
-      company_id: "",
-      date: "",
-      dialog: {
-        checkin_time: "",
-        checkout_time: "",
-        date: "",
-      },
-    };
-  },
-  mounted() {
-    // this.company_id = JSON.parse(JSON.stringify(this.$auth.user.company_id));
-    this.lastDate = Number(moment().clone().endOf("month").format("DD"));
-    this.$store.dispatch("report/getAttendance", {
-      // company_id: this.company_id,
-      startDate: moment().clone().startOf("month").format("YYYY-MM-DD"),
-      endDate: moment().clone().endOf("month").format("YYYY-MM-DD"),
-    });
-  },
-  methods: {
-    detil(data) {
-      this.dialog.checkin_time = data.checkin_time;
-      this.dialog.checkout_time = data.checkout_time;
-      this.dialog.date = data.date;
-      console.log(data);
-    },
-    dateLabel(date) {
-      return moment(date, "YYYY-MM-DD").format("D");
-    },
-    month(date) {
-      console.log(date);
-      return moment(date, "YYYY-MM-DD").format("MMMM");
-    },
-    cColumn(data) {
-      if (data.status_checkin == 0) {
-        return 0;
-      } else if (data.status_checkin == 1) {
-        return 1;
-      } else if (data.status_checkin == 2) {
-        return 2;
-      }
-      if (data.is_cuti) {
-        return 3;
-      }
-      if (data.is_weekend) {
-        return 4;
+      return {
+        api_url: config.baseApiUrl,
+        table: {
+          max: 10
+        },
+        active: '',
+        page: 1,
+        titleDialog: 'Edit Jadwal Mata Pelajaran',
+        search: '',
+        isUpdate: false,
+        jadwalDialog: false,
+        btnLoader: false,
+        form: {
+          id: '',
+          name_pelajaran: '',
+          kelas_name: '',
+          semester_name: '',
+          schedule_in: '',
+          schedule_out: '',
+          date: ''
+        }
       }
     },
-    searchData(date) {
-      let startDate = moment(date)
-        .clone()
-        .startOf("month")
-        .format("YYYY-MM-DD");
-      let endDate = moment(date).clone().endOf("month").format("YYYY-MM-DD");
-      console.log(startDate);
-      this.$store.dispatch("report/getAttendance", {
-        // company_id: this.company_id,
-        startDate: startDate,
-        endDate: endDate,
+    mounted() {
+      this.$store.dispatch('jadwal/getAll', {
+        //
       });
     },
-    handleChangeFile(file, fileList) {
-      this.form.banner = file.raw;
-    },
-    created() {
-      this.currentTime = moment().format("LTS");
-      setInterval(() => this.updateCurrentTime(), 1 * 1000);
-    },
-  },
+    methods: {
+      searchData(){
+        this.$store.dispatch('jadwal/getAll', {
+          search: this.search,
+        });
+      },
+      edit(data) {
+        // console.log(moment(data.schedule_in,"HH:mm:ss").format("HH:mm"))
+        this.form.id = data.id
+        this.form.name_pelajaran = data.name_pelajaran
+        this.form.kelas_name = data.kelas_name
+        this.form.semester_name = data.semester_name
+        this.form.schedule_in = data.schedule_in
+        this.form.schedule_out = data.schedule_out
+        this.form.date = data.date
+        this.jadwalDialog = true
+        this.titleDialog = 'Edit Jadwal Mata Pelajaran'
+        this.isUpdate = true
+      },
+      resetForm() {
+        this.form = {
+          id: '',
+          name_pelajaran: '',
+          kelas_name: '',
+          semester_name: '',
+          schedule_in: '',
+          schedule_out: '',
+          date: ''
+        }
+        this.isUpdate = false
+      },
+      handleCurrentChange(val) {
+        this.$store.commit('jadwal/setPage', val)
+        this.$store.dispatch('jadwal/getAll', {
+          //
+        });
+      },
+      onSubmit(type = 'store') {
+        this.btnLoader = true
+        let formData = new FormData()
+        formData.append("name_pelajaran", this.form.name_pelajaran)
+        formData.append("kelas_name", this.form.kelas_name)
+        formData.append("semester_name", this.form.name)
+        formData.append("schedule_in", this.form.schedule_in)
+        formData.append("schedule_out", this.form.schedule_out)
+        formData.append("date", this.form.date)
+        let url = "/jadwal/store";
+        if (type == 'update') {
+          url = `/jadwal/${this.form.id}/update`
+        }
+
+        this.$axios.post(url, formData).then(resp => {
+          if (resp.data.success) {
+            this.$notify.success({
+              title: 'Success',
+              message: `Berhasil ${type == 'store' ? 'Menambah' : 'Mengubah'} Jadwal Mapel`
+            })
+            this.resetForm()
+            this.jadwalDialog = false
+            this.$store.dispatch('jadwal/getAll', {
+              //
+            });
+          }
+        }).finally(() => {
+          this.btnLoader = false
+          this.$store.dispatch('jadwal/getAll', {
+            //
+          })
+        }).catch(err => {
+          let error = err.response.data.data
+          if (error) {
+            this.showErrorField(error)
+          } else {
+            this.$notify.error({
+              title: 'Error',
+              message: err.response.data.message
+            })
+          }
+        })
+      },
+      deleteJadwal(id) {
+        console.log(id)
+        this.$swal({
+          title: 'PERINGATAN!!!',
+          text: "Apakah anda yakin ingin menghapus data yang dipilih ?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya!',
+          cancelButtonText: 'No!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$axios.delete(`/jadwal/${id}/delete`).then(resp => {
+              if (resp.data.success) {
+                this.$notify.success({
+                  title: 'Success',
+                  message: 'Berhasil Menghapus Data'
+                })
+                this.jadwalDialog = false
+                this.$store.dispatch('kelas/getAll', {
+                  defaultPage: true,
+                });
+              }
+            }).finally(() => {
+              //
+            }).catch(err => {
+              this.$notify.error({
+                title: 'Error',
+                message: err.response.data.message
+              })
+            })
+          }
+        })
+      },
   computed: {
-    ...mapGetters("report", ["getReportAttendance", "getLoader"]),
+    ...mapGetters("jadwal", ["getJadwal", "getLoader"]),
   },
   watch: {},
+    }
 };
 </script>
 

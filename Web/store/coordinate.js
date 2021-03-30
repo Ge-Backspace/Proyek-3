@@ -1,5 +1,5 @@
 export const state = () => ({
-  coordinates: {
+  coordinate: {
     data: [],
     center: '',
   },
@@ -8,10 +8,10 @@ export const state = () => ({
 
 export const mutations = {
   setCoordinate(state, data) {
-    state.coordinates.data = data
+    state.coordinate.data = data
   },
   setCenter(state, data) {
-    state.coordinates.center = data
+    state.coordinate.center = data
   },
   setLoader(state){
     state.compLoader = !state.compLoader
@@ -20,7 +20,7 @@ export const mutations = {
 
 export const getters = {
   getCoordinate(state) {
-    return state.coordinates
+    return state.coordinate
   },
   getLoader(state){
     return state.compLoader
@@ -28,9 +28,9 @@ export const getters = {
 };
 
 export const actions = {
-  getLocation(context, {company_id = ''}){
+  getLocation(context){
     context.commit('setLoader')
-    this.$axios.get(`/getCoordinate?company_id=${company_id}`).then(resp => {
+    this.$axios.get(`/coordinate`).then(resp => {
         context.commit('setCoordinate', resp.data.data.data)
         context.commit('setCenter', resp.data.data.center)
     }).catch(e => {

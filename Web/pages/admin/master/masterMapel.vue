@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
-          <h1 class="heading">Master Data Mata Pelajaran</h1>
+          <h1 class="heading">Master Mata Pelajaran</h1>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
             </div>
           </div>
           <el-card v-loading="getLoader" style="margin-top: 40px">
-            <div class="row" style="margin-bottom: 20px">
+            <div class="row" style="margin-bottom:20px">
               <div class="col-md-2">
                 <vs-button
                   success
@@ -61,20 +61,14 @@
             <vs-table striped>
               <template #thead>
                 <vs-tr>
-                  <vs-th>Nama Mapel</vs-th>
-                  <vs-th>Kode Mapel</vs-th>
-                  <vs-th>Pengajar</vs-th>
-                  <vs-th>Semester</vs-th>
+                  <vs-th>Mata Pelajaran</vs-th>
                   <vs-th>Action</vs-th>
                 </vs-tr>
               </template>
               <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in getSalary.data" :data="tr">
+                <vs-tr :key="i" v-for="(tr, i) in getMapel.data" :data="tr">
                   <vs-td>
                     {{ tr.name }}
-                  </vs-td>
-                  <vs-td>
-                    {{ tr.gaji }}
                   </vs-td>
                   <vs-td>
                     <el-tooltip content="Edit" placement="top-start" effect="dark">
@@ -82,7 +76,7 @@
                     </el-tooltip>
 
                     <el-tooltip content="Delete" placement="top-start" effect="dark">
-                      <el-button size="mini" type="primary" @click="deleteSchedule(tr.id)" icon="fa fa-trash">
+                      <el-button size="mini" type="primary" @click="deleteMapel(tr.id)" icon="fa fa-trash">
                       </el-button>
                     </el-tooltip>
                   </vs-td>
@@ -91,10 +85,10 @@
               <template #footer>
                 <vs-row>
                   <vs-col w="2">
-                    <small>Total : {{getSalary.total}} Data</small>
+                    <small>Total : {{getMapel.total}} Data</small>
                   </vs-col>
                   <vs-col w="10">
-                    <vs-pagination v-model="page" :length="Math.ceil(getSalary.total / table.max)" />
+                    <vs-pagination v-model="page" :length="Math.ceil(getMapel.total / table.max)" />
                   </vs-col>
                 </vs-row>
               </template>
@@ -105,31 +99,14 @@
     </div>
 
     <!-- Floating Button -->
-    <el-tooltip class="item" effect="dark" content="Buat Schedule Baru" placement="top-start">
-      <a class="float" @click="shiftDialog = true; titleDialog = 'Tambah Shift'">
+    <el-tooltip class="item" effect="dark" content="Add New Kelas" placement="top-start">
+      <a class="float" @click="mapelDialog = true; titleDialog = 'Tambah Mata Pelajaran'">
         <i class="el-icon-plus my-float"></i>
       </a>
     </el-tooltip>
     <!-- End floating button -->
 
-    <!-- <el-dialog :title="titleDialog" :visible.sync="shiftDialog"
-      :width="$store.state.drawer.mode === 'mobile' ? '80%' : '60%'" @closed="resetForm()">
-      <el-form label-width="auto" ref="form" :model="form" size="mini">
-        <el-form-item label="Hari">
-          <el-input v-model="form.hari"></el-input>
-        </el-form-item>
-        <el-form-item label="Schedule In">
-          <el-time-picker v-model="form.schedule_out"></el-time-picker>
-        </el-form-item>
-        <el-form-item size="large">
-          <el-button type="primary" :loading="btnLoader" @click="onSubmit('update')" v-if="isUpdate">Update</el-button>
-          <el-button type="primary" :loading="btnLoader" @click="onSubmit" v-else>Simpan</el-button>
-          <el-button @click="shiftDialog = false">Batal</el-button>
-        </el-form-item>
-      </el-form>
-    </el-dialog> -->
-
-    <vs-dialog v-model="shiftDialog" :width="$store.state.drawer.mode === 'mobile' ? '80%' : '60%'"
+    <vs-dialog v-model="mapelDialog" :width="$store.state.drawer.mode === 'mobile' ? '80%' : '60%'"
       @close="resetForm()">
       <template #header>
         <h1 class="not-margin">
@@ -138,43 +115,9 @@
       </template>
       <div class="con-form">
         <vs-row>
-          <vs-col
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            w="6"
-            style="padding: 5px"
-          >
-            <label>Employee</label>
-            <vs-select
-              filter
-              placeholder="Employee"
-              v-model="form.employee_id"
-            >
-              <vs-option
-                v-for="op in getOptionEmployees.data"
-                :key="op.id"
-                :label="op.name"
-                :value="op.id"
-              >
-                {{ op.name }}
-              </vs-option>
-            </vs-select>
-          </vs-col>
-          <vs-col
-            v-loading="getLoader"
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            w="6"
-            style="padding: 5px"
-          >
-            <label>Total Salary</label>
-            <vs-input
-              type="number"
-              v-model="form.gaji"
-              placeholder="Total Salary"
-            ></vs-input>
+          <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="6" style="padding:5px">
+            <label>Nama Mata Pelajaran</label>
+            <vs-input type="text" v-model="form.name" placeholder="Masukkan Nama Mata Pelajaran"></vs-input>
           </vs-col>
         </vs-row>
       </div>
@@ -187,73 +130,7 @@
               <vs-button block :loading="btnLoader" @click="onSubmit('store')" v-else>Simpan</vs-button>
             </vs-col>
             <vs-col w="6" style="padding:5px">
-              <vs-button block border @click="shiftDialog = false; resetForm()">Batal</vs-button>
-            </vs-col>
-          </vs-row>
-          <div>&nbsp;</div>
-        </div>
-      </template>
-    </vs-dialog>
-    <vs-dialog
-      v-model="importDialog"
-      :width="$store.state.drawer.mode === 'mobile' ? '80%' : '60%'"
-      @close="resetForm()"
-    >
-      <template #header>
-        <h1 class="not-margin">
-          {{ titleDialog }}
-        </h1>
-      </template>
-      <div class="con-form">
-        <vs-col
-          vs-type="flex"
-          vs-justify="center"
-          vs-align="center"
-          w="6"
-          style="padding: 5px"
-        >
-          <label>Import Excel</label>
-          <vs-input<input type="file" id="file" ref="file" @change="onFileChange"/>
-        </vs-col>
-        <vs-col
-          vs-type="flex"
-          vs-justify="center"
-          vs-align="center"
-          w="6"
-          style="padding: 5px"
-        >
-          <vs-button
-            color="primary"
-            gradient
-            :active="active == 6"
-            @click="active = 6"
-          >
-            <i class="bx bx-file-blank"></i> download templates
-          </vs-button>
-        </vs-col>
-      </div>
-
-      <template #footer>
-        <div class="footer-dialog">
-          <vs-row>
-            <vs-col w="6" style="padding: 5px">
-              <vs-button
-                block
-                :loading="btnLoader"
-                @click="importData()"
-                >Simpan</vs-button
-              >
-            </vs-col>
-            <vs-col w="6" style="padding: 5px">
-              <vs-button
-                block
-                border
-                @click="
-                  importDialog = false;
-                  resetForm();
-                "
-                >Batal</vs-button
-              >
+              <vs-button block border @click="mapelDialog = false; resetForm()">Batal</vs-button>
             </vs-col>
           </vs-row>
           <div>&nbsp;</div>
@@ -281,215 +158,155 @@
     data() {
       return {
         api_url: config.baseApiUrl,
-        company_id: '',
         table: {
           max: 10
         },
         active: '',
         page: 1,
-        titleDialog: 'Edit Shift',
-        importDialog: false,
+        titleDialog: 'Edit Mata Pelajaran',
         search: '',
-        // company_id : JSON.parse(JSON.stringify(this.$auth.user.company_id)),
         isUpdate: false,
-        shiftDialog: false,
+        mapelDialog: false,
         btnLoader: false,
         form: {
           id: '',
-          employee_id: '',
-          gaji: '',
+          name: '',
         }
       }
     },
     mounted() {
-      // this.company_id = JSON.parse(JSON.stringify(this.$auth.user.company_id));
-      // this.$store.dispatch('salary/getAll', {
-      //   company_id: this.company_id
-      // })
-      // this.$store.dispatch('option/getOptionPositions', {
-      //   company_id: this.company_id
-      // })
-      // this.$store.dispatch('option/getOptionEmployees', {
-      //   company_id: this.company_id
-      // })
+      this.$store.dispatch('mapel/getAll', {
+        //
+      });
     },
     methods: {
-      // searchData(){
-      //   this.$store.dispatch('salary/getAll', {
-      //     search: this.search,
-      //     company_id: this.company_id
-      //   });
-      // },
-      // edit(data) {
-      //   this.form.id = data.id
-      //   this.form.employee_id = data.employee_id
-      //   this.form.gaji = data.gaji
-      //   this.shiftDialog = true
-      //   this.titleDialog = 'Edit Shift Data'
-      //   this.isUpdate = true
-      // },
-      // resetForm() {
-      //   this.form = {
-      //     id: '',
-      //     employee_id: '',
-      //     gaji: '',
-      //   }
-      //   this.isUpdate = false
-      // },
-      // handleCurrentChange(val) {
-      //   this.$store.commit('salary/setPage', val)
-      //   this.$store.dispatch('salary/getAll', {
-      //     company_id: this.company_id
-      //   });
-      // },
-      // onFileChange(e){
-      //   this.file = e.target.files[0];
-      // },
-      // importData(){
-      //   let formData = new FormData();
-      //   formData.append('company_id', this.company_id);
-      //   formData.append('file', this.file);
-      //   this.$axios.post('/gaji/import', formData, {
-      //     headers: {'content-type': 'multipart/form-data' }
-      //   })
-      //   .then(resp => {
-      //     if(resp.data.success){
-      //       this.$notify.success({
-      //         title: 'Success',
-      //         message: 'Berhasil Import Shift Employee'
-      //       })
-      //       this.resetForm()
-      //       this.importDialog = false
-      //       this.$store.dispatch('salary/getAll', {
-      //         company_id: this.company_id
-      //       });
-      //     }
-      //   })
-      //   .catch(error => {
-      //     this.uploading = false
-      //     this.error = error.resp.data
-      //     console.log('check error: ', this.error)
-      //   })
-      //   .finally(() => {
-      //     this.btnLoader = false
-      //   })
-      // },
-      // exportData(type = 'excel'){
-      //   if (type == 'pdf') {
-      //     this.export_as = 'pdf'
-      //   }
-      //   this.$axios.get(`/gaji/export?company_id=${this.company_id}&as=${this.export_as}`, {
-      //     responseType: 'blob'
-      //   }).then((response) => {
-      //     const link = document.createElement('a');
-      //     link.href = window.URL.createObjectURL(
-      //       new Blob([response.data])
-      //     );
-      //     if (type == 'pdf') {
-      //       link.setAttribute('download','master_salary.pdf');
-      //     } else {
-      //       link.setAttribute('download','master_salary.xlsx');
-      //     }
-      //     document.body.appendChild(link);
-      //     link.click();
-      //   });
-      // },
-      // onSubmit(type = 'store') {
-      //   this.btnLoader = true
-      //   let formData = new FormData()
-      //   formData.append("id", this.form.id)
-      //   formData.append("company_id", this.company_id)
-      //   formData.append("employee_id", this.form.employee_id)
-      //   formData.append("gaji", this.form.gaji)
-      //   let url = "/gaji";
-      //   if (type == 'update') {
-      //     url = `/gaji/${this.form.id}/update`
-      //   }
+    //   searchData(){
+    //     this.$store.dispatch('position/getAll', {
+    //       search: this.search,
+    //       company_id: this.company_id
+    //     });
+    //   },
+    //   onFileChange(e){
+    //   this.file = e.target.files[0];
+    // },
+      edit(data) {
+        // console.log(moment(data.schedule_in,"HH:mm:ss").format("HH:mm"))
+        this.form.id = data.id
+        this.form.name = data.name
+        this.mapelDialog = true
+        this.titleDialog = 'Edit Kelas Data'
+        this.isUpdate = true
+      },
+      resetForm() {
+        this.form = {
+          id: '',
+          name: '',
+        }
+        this.isUpdate = false
+      },
+      handleCurrentChange(val) {
+        this.$store.commit('mapel/setPage', val)
+        this.$store.dispatch('mapel/getAll', {
+          //
+        });
+      },
+      onSubmit(type = 'store') {
+        this.btnLoader = true
+        let formData = new FormData()
+        // formData.append("id", this.form.id)
+        formData.append("name", this.form.name)
+        let url = "/pelajaran/store";
+        if (type == 'update') {
+          url = `/pelajaran/${this.form.id}/update`
+        }
 
-      //   this.$axios.post(url, formData).then(resp => {
-      //     if (resp.data.success) {
-      //       this.$notify.success({
-      //         title: 'Success',
-      //         message: `Berhasil ${type == 'store' ? 'Menambah' : 'Mengubah'} Shift`
-      //       })
-      //       this.resetForm()
-      //       this.shiftDialog = false
-      //       this.$store.dispatch('salary/getAll', {
-      //         company_id: this.company_id
-      //       });
-      //     }
-      //   }).finally(() => {
-      //     this.btnLoader = false
-      //   }).catch(err => {
-      //     let error = err.response.data.data
-      //     if (error) {
-      //       this.showErrorField(error)
-      //     } else {
-      //       this.$notify.error({
-      //         title: 'Error',
-      //         message: err.response.data.message
-      //       })
-      //     }
-      //   })
-      // },
-      // deleteSchedule(id) {
-      //   this.$swal({
-      //     title: 'HEY WAIT!, HEY HOLD ON!',
-      //     text: "Are you serious to delete this cutie data ?",
-      //     icon: 'warning',
-      //     showCancelButton: true,
-      //     confirmButtonColor: '#3085d6',
-      //     cancelButtonColor: '#d33',
-      //     confirmButtonText: 'Yes Yes Yes',
-      //     cancelButtonText: 'Yes but actually NO!'
-      //   }).then((result) => {
-      //     if (result.isConfirmed) {
-      //       this.$axios.delete(`/gaji/${id}/delete`).then(resp => {
-      //         if (resp.data.success) {
-      //           this.$notify.success({
-      //             title: 'Success',
-      //             message: 'Berhasil Menghapus Data'
-      //           })
-      //           this.shiftDialog = false
-      //           this.$store.dispatch('salary/getAll', {
-      //             defaultPage: true,
-      //             company_id: this.company_id
-      //           });
-      //         }
-      //       }).finally(() => {
-      //         //
-      //       }).catch(err => {
-      //         this.$notify.error({
-      //           title: 'Error',
-      //           message: err.response.data.message
-      //         })
-      //       })
-      //     }
-      //   })
-      // },
+        this.$axios.post(url, formData).then(resp => {
+          if (resp.data.success) {
+            this.$notify.success({
+              title: 'Success',
+              message: `Berhasil ${type == 'store' ? 'Menambah' : 'Mengubah'} Mata Pelajaran`
+            })
+            this.resetForm()
+            this.mapelDialog = false
+            this.$store.dispatch('mapel/getAll', {
+              //
+            });
+          }
+        }).finally(() => {
+          this.btnLoader = false
+          this.$store.dispatch('kelas/getAll', {
+            //
+          })
+        }).catch(err => {
+          let error = err.response.data.data
+          if (error) {
+            this.showErrorField(error)
+          } else {
+            this.$notify.error({
+              title: 'Error',
+              message: err.response.data.message
+            })
+          }
+        })
+      },
+      deleteMapel(id) {
+        console.log(id)
+        this.$swal({
+          title: 'PERINGATAN!!!',
+          text: "Apakah anda yakin ingin menghapus data yang dipilih ?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya!',
+          cancelButtonText: 'No!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$axios.delete(`/pelajaran/${id}/delete`).then(resp => {
+              if (resp.data.success) {
+                this.$notify.success({
+                  title: 'Success',
+                  message: 'Berhasil Menghapus Data'
+                })
+                this.mapelDialog = false
+                this.$store.dispatch('mapel/getAll', {
+                  defaultPage: true,
+                });
+              }
+            }).finally(() => {
+              //
+            }).catch(err => {
+              this.$notify.error({
+                title: 'Error',
+                message: err.response.data.message
+              })
+            })
+          }
+        })
+      },
+      // formatTime(time){
+      //   return moment(time, "HH:mm:ss").format('HH:mm');
+      // }
     },
     computed: {
-      ...mapGetters('salary', [
-        'getSalary',
+      ...mapGetters('mapel', [
+        'getMapel',
         'getLoader'
-      ]),
-      ...mapGetters('option', [
-        'getOptionPositions', 'getOptionEmployees'
-      ]),
+      ])
     },
     watch: {
-      getSalary(newValue, oldValue) {
+      getMapel(newValue, oldValue) {
 
       },
       search(newValue, oldValue) {
-        this.$store.dispatch('salary/getAll', {
+        this.$store.dispatch('mapel/getAll', {
           search: newValue
         });
       },
       page(newValue, oldValue) {
-        this.$store.commit('salary/setPage', newValue)
-        this.$store.dispatch('salary/getAll', {
-          company_id: this.company_id
+        this.$store.commit('mapel/setPage', newValue)
+        this.$store.dispatch('mapel/getAll', {
+          //
         });
       }
     },

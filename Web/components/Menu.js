@@ -109,14 +109,9 @@ export const  menu = () => {
             // route: '/admin/berita',
             children: [
                 {
-                    text: "Master Sekolah",
-                    icon: 'el-icon-postcard',
-                    route: '/admin/master/masterSekolah'
-                },
-                {
-                  text: "Master Absen",
+                  text: "Master Semester",
                   icon: 'el-icon-postcard',
-                  route: '/admin/master/masterAbsen'
+                  route: '/admin/master/masterSemester'
                 },
                 {
                     text: "Master Siswa",
@@ -132,11 +127,6 @@ export const  menu = () => {
                     text: "Master Mata Pelajaran",
                     icon: 'el-icon-postcard',
                     route: '/admin/master/masterMapel'
-                },
-                {
-                    text: "Master Jadwal Pelajaran",
-                    icon: 'el-icon-postcard',
-                    route: '/admin/master/masterJadwalMapel'
                 },
                 {
                     text: "Master Lokasi",

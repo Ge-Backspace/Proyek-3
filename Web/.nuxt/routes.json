@@ -2,193 +2,225 @@
   {
     "name": "company_check",
     "path": "/company_check",
-    "component": "F:\\\\mroyek3\\\\pages\\\\company_check.vue",
-    "chunkName": "pages/company_check"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\company_check.vue",
+    "chunkName": "pages/company_check",
+    "_name": "_37815832"
   },
   {
     "name": "LandingPage",
     "path": "/LandingPage",
-    "component": "F:\\\\mroyek3\\\\pages\\\\LandingPage.vue",
-    "chunkName": "pages/LandingPage"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\LandingPage.vue",
+    "chunkName": "pages/LandingPage",
+    "_name": "_53115487"
   },
   {
     "name": "login",
     "path": "/login",
-    "component": "F:\\\\mroyek3\\\\pages\\\\login.vue",
-    "chunkName": "pages/login"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_ec353fec"
   },
   {
     "name": "profile",
     "path": "/profile",
-    "component": "F:\\\\mroyek3\\\\pages\\\\profile.vue",
-    "chunkName": "pages/profile"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\profile.vue",
+    "chunkName": "pages/profile",
+    "_name": "_bd8b47ec"
   },
   {
     "name": "register",
     "path": "/register",
-    "component": "F:\\\\mroyek3\\\\pages\\\\register.vue",
-    "chunkName": "pages/register"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\register.vue",
+    "chunkName": "pages/register",
+    "_name": "_4c1776dc"
   },
   {
     "name": "register_account",
     "path": "/register_account",
-    "component": "F:\\\\mroyek3\\\\pages\\\\register_account.vue",
-    "chunkName": "pages/register_account"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\register_account.vue",
+    "chunkName": "pages/register_account",
+    "_name": "_490cb480"
   },
   {
     "name": "register_company",
     "path": "/register_company",
-    "component": "F:\\\\mroyek3\\\\pages\\\\register_company.vue",
-    "chunkName": "pages/register_company"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\register_company.vue",
+    "chunkName": "pages/register_company",
+    "_name": "_11c28260"
   },
   {
     "name": "reset-password",
     "path": "/reset-password",
-    "component": "F:\\\\mroyek3\\\\pages\\\\reset-password.vue",
-    "chunkName": "pages/reset-password"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\reset-password.vue",
+    "chunkName": "pages/reset-password",
+    "_name": "_02403708"
   },
   {
     "name": "test",
     "path": "/test",
-    "component": "F:\\\\mroyek3\\\\pages\\\\test.vue",
-    "chunkName": "pages/test"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\test.vue",
+    "chunkName": "pages/test",
+    "_name": "_9a5c62fe"
   },
   {
     "name": "admin-absen",
     "path": "/admin/absen",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\absen\\\\index.vue",
-    "chunkName": "pages/admin/absen/index"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\absen\\\\index.vue",
+    "chunkName": "pages/admin/absen/index",
+    "_name": "_624d6747"
   },
   {
     "name": "admin-beranda",
     "path": "/admin/beranda",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\beranda.vue",
-    "chunkName": "pages/admin/beranda"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\beranda.vue",
+    "chunkName": "pages/admin/beranda",
+    "_name": "_113135b9"
   },
   {
     "name": "admin-berita",
     "path": "/admin/berita",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\berita.vue",
-    "chunkName": "pages/admin/berita"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\berita.vue",
+    "chunkName": "pages/admin/berita",
+    "_name": "_1d175697"
   },
   {
     "name": "admin-company1",
     "path": "/admin/company1",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\company1.vue",
-    "chunkName": "pages/admin/company1"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\company1.vue",
+    "chunkName": "pages/admin/company1",
+    "_name": "_68935078"
   },
   {
     "name": "admin-informasi",
     "path": "/admin/informasi",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\informasi.vue",
-    "chunkName": "pages/admin/informasi"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\informasi.vue",
+    "chunkName": "pages/admin/informasi",
+    "_name": "_22be012e"
   },
   {
     "name": "admin-jadwalMapel",
     "path": "/admin/jadwalMapel",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\jadwalMapel\\\\index.vue",
-    "chunkName": "pages/admin/jadwalMapel/index"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\jadwalMapel\\\\index.vue",
+    "chunkName": "pages/admin/jadwalMapel/index",
+    "_name": "_40728db4"
   },
   {
     "name": "admin-kegiatan",
     "path": "/admin/kegiatan",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\kegiatan.vue",
-    "chunkName": "pages/admin/kegiatan"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\kegiatan.vue",
+    "chunkName": "pages/admin/kegiatan",
+    "_name": "_eeecf468"
   },
   {
     "name": "admin-mapel",
     "path": "/admin/mapel",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\mapel\\\\index.vue",
-    "chunkName": "pages/admin/mapel/index"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\mapel\\\\index.vue",
+    "chunkName": "pages/admin/mapel/index",
+    "_name": "_33688842"
   },
   {
     "name": "admin-permission",
     "path": "/admin/permission",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\permission.vue",
-    "chunkName": "pages/admin/permission"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\permission.vue",
+    "chunkName": "pages/admin/permission",
+    "_name": "_5f807ebf"
   },
   {
     "name": "admin-salary",
     "path": "/admin/salary",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\salary.vue",
-    "chunkName": "pages/admin/salary"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\salary.vue",
+    "chunkName": "pages/admin/salary",
+    "_name": "_27548d8c"
   },
   {
     "name": "admin-shift",
     "path": "/admin/shift",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\shift.vue",
-    "chunkName": "pages/admin/shift"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\shift.vue",
+    "chunkName": "pages/admin/shift",
+    "_name": "_1f4e4142"
   },
   {
     "name": "admin-test",
     "path": "/admin/test",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\test.vue",
-    "chunkName": "pages/admin/test"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\test.vue",
+    "chunkName": "pages/admin/test",
+    "_name": "_708d2602"
   },
   {
     "name": "admin-users",
     "path": "/admin/users",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\users.vue",
-    "chunkName": "pages/admin/users"
-  },
-  {
-    "name": "admin-master-masterAbsen",
-    "path": "/admin/master/masterAbsen",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterAbsen.vue",
-    "chunkName": "pages/admin/master/masterAbsen"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\users.vue",
+    "chunkName": "pages/admin/users",
+    "_name": "_0151a070"
   },
   {
     "name": "admin-master-masterJadwal",
     "path": "/admin/master/masterJadwal",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterJadwal.vue",
-    "chunkName": "pages/admin/master/masterJadwal"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterJadwal.vue",
+    "chunkName": "pages/admin/master/masterJadwal",
+    "_name": "_be7251ee"
   },
   {
     "name": "admin-master-MasterJadwalMapel",
     "path": "/admin/master/MasterJadwalMapel",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\MasterJadwalMapel.vue",
-    "chunkName": "pages/admin/master/MasterJadwalMapel"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\MasterJadwalMapel.vue",
+    "chunkName": "pages/admin/master/MasterJadwalMapel",
+    "_name": "_9502a3ec"
   },
   {
     "name": "admin-master-masterJurusan",
     "path": "/admin/master/masterJurusan",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterJurusan.vue",
-    "chunkName": "pages/admin/master/masterJurusan"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterJurusan.vue",
+    "chunkName": "pages/admin/master/masterJurusan",
+    "_name": "_fac6bfa4"
   },
   {
     "name": "admin-master-masterKelas",
     "path": "/admin/master/masterKelas",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterKelas.vue",
-    "chunkName": "pages/admin/master/masterKelas"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterKelas.vue",
+    "chunkName": "pages/admin/master/masterKelas",
+    "_name": "_7876ac40"
   },
   {
     "name": "admin-master-masterLokasi",
     "path": "/admin/master/masterLokasi",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterLokasi.vue",
-    "chunkName": "pages/admin/master/masterLokasi"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterLokasi.vue",
+    "chunkName": "pages/admin/master/masterLokasi",
+    "_name": "_0f03e283"
   },
   {
     "name": "admin-master-masterMapel",
     "path": "/admin/master/masterMapel",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterMapel.vue",
-    "chunkName": "pages/admin/master/masterMapel"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterMapel.vue",
+    "chunkName": "pages/admin/master/masterMapel",
+    "_name": "_26d27f5f"
   },
   {
     "name": "admin-master-masterSekolah",
     "path": "/admin/master/masterSekolah",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterSekolah.vue",
-    "chunkName": "pages/admin/master/masterSekolah"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterSekolah.vue",
+    "chunkName": "pages/admin/master/masterSekolah",
+    "_name": "_eb6cd60e"
+  },
+  {
+    "name": "admin-master-masterSemester",
+    "path": "/admin/master/masterSemester",
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterSemester.vue",
+    "chunkName": "pages/admin/master/masterSemester",
+    "_name": "_c0e593e8"
   },
   {
     "name": "admin-master-masterSiswa",
     "path": "/admin/master/masterSiswa",
-    "component": "F:\\\\mroyek3\\\\pages\\\\admin\\\\master\\\\masterSiswa.vue",
-    "chunkName": "pages/admin/master/masterSiswa"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\admin\\\\master\\\\masterSiswa.vue",
+    "chunkName": "pages/admin/master/masterSiswa",
+    "_name": "_c7752a7a"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "F:\\\\mroyek3\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "component": "F:\\\\Proyek 3\\\\Proyek-3\\\\Web\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_7f84861a"
   }
 ]

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
-          <h1 class="heading">Master Data Lokasi</h1>
+          <h1 class="heading">Master Data Absen</h1>
         </div>
       </div>
     </div>
@@ -28,22 +28,22 @@
             <vs-table striped>
               <template #thead>
                 <vs-tr>
-                  <vs-th>Kelas</vs-th>
-                  <vs-th>Langitude</vs-th>
-                  <vs-th>Latitude</vs-th>
+                  <vs-th>Name</vs-th>
+                  <vs-th>Start Date</vs-th>
+                  <vs-th>End Date</vs-th>
                   <vs-th>Action</vs-th>
                 </vs-tr>
               </template>
               <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in getLokasi.data" :data="tr">
+                <vs-tr :key="i" v-for="(tr, i) in getSemester.data" :data="tr">
                   <vs-td>
                     {{ tr.name }}
                   </vs-td>
                   <vs-td>
-                    {{ tr.lat }}
+                    {{ tr.start_date }}
                   </vs-td>
                   <vs-td>
-                    {{ tr.lng }}
+                    {{ tr.end_date }}
                   </vs-td>
                   <vs-td>
                     <el-tooltip
@@ -68,7 +68,7 @@
                       <el-button
                         size="mini"
                         type="primary"
-                        @click="deleteLokasi(tr.id)"
+                        @click="deleteSemester(tr.id)"
                         icon="fa fa-trash"
                       >
                       </el-button>
@@ -79,12 +79,12 @@
               <template #footer>
                 <vs-row>
                   <vs-col w="2">
-                    <small>Total : {{ getLokasi.total }} Data</small>
+                    <small>Total : {{ getSemester.total }} Data</small>
                   </vs-col>
                   <vs-col w="10">
                     <vs-pagination
                       v-model="page"
-                      :length="Math.ceil(getLokasi.total / table.max)"
+                      :length="Math.ceil(getSemester.total / table.max)"
                     />
                   </vs-col>
                 </vs-row>
@@ -93,47 +93,28 @@
           </el-card>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <el-card v-loading="getLoader">
-            <GmapMap
-            v-bind:center="getCoordinate.center"
-            v-bind:zoom="4"
-            map-type-id="terrain"
-            style="height: 225px"
-            >
-            <GmapMarker
-              v-bind:key="index"
-              v-for="(m, index) in getCoordinate.data"
-              v-bind:position="markers(m.position)"
-            />
-            </GmapMap>
-          </el-card>
-        </div>
-      </div>
+    </div>
 
     <!-- Floating Button -->
     <el-tooltip
       class="item"
       effect="dark"
-      content="Tambah Lokasi"
+      content="Tambah Semester Baru"
       placement="top-start"
     >
       <a
         class="float"
         @click="
           request = true;
-          lokasiDialog = true;
-          titleDialog = 'Tambah Lokasi';
-          form.lat = -6.2;
-          form.lng = 106.816666;
+          semesterDialog = true;
+          titleDialog = 'Tambah Semester';
         "
       >
         <i class="el-icon-plus my-float"></i>
       </a>
     </el-tooltip>
     <!-- End floating button-->
-    <vs-dialog v-model="lokasiDialog" :width="$store.state.drawer.mode === 'mobile' ? '80%' : '60%'"
+    <vs-dialog v-model="semesterDialog" :width="$store.state.drawer.mode === 'mobile' ? '80%' : '60%'"
       @close="resetForm()">
       <template #header>
         <h1 class="not-margin">
@@ -143,31 +124,16 @@
       <div class="con-form">
         <vs-row>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="12" style="padding:5px">
-            <label>Nama Kelas</label>
-            <vs-input type="text" v-model="form.name" placeholder="Masukkan Nama Kelas"></vs-input>
+            <label>Nama Semester</label>
+            <vs-input type="text" v-model="form.name" placeholder="Masukkan Semester"></vs-input>
           </vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="6" style="padding:5px">
-            <label>Latitude</label>
-            <vs-input type="number" v-model="form.lat" placeholder="Latitude"></vs-input>
+            <label>Start Date</label>
+            <vs-input type="date" v-model="form.start_date"></vs-input>
           </vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="6" style="padding:5px">
-            <label>Longitude</label>
-            <vs-input type="number" v-model="form.lng" placeholder="Longitude"></vs-input>
-          </vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" w="12" style="padding:5px">
-            <GmapMap
-            v-bind:center="center"
-            v-bind:zoom="10"
-            map-type-id="terrain"
-            style="height: 250px"
-            >
-            <GmapMarker
-              v-bind:position="{lat: form.lat, lng: form.lng}"
-              v-bind:clickable="true"
-              v-bind:draggable="true"
-              @drag="updateCoordinates"
-            />
-            </GmapMap>
+            <label>End Date</label>
+            <vs-input type="date" v-model="form.end_date"></vs-input>
           </vs-col>
         </vs-row>
       </div>
@@ -180,7 +146,7 @@
               <vs-button block :loading="btnLoader" @click="onSubmit('store')" v-else>Simpan</vs-button>
             </vs-col>
             <vs-col w="6" style="padding:5px">
-              <vs-button block border @click="lokasiDialog = false; resetForm()">Batal</vs-button>
+              <vs-button block border @click="semesterDialog = false; resetForm()">Batal</vs-button>
             </vs-col>
           </vs-row>
           <div>&nbsp;</div>
@@ -188,10 +154,10 @@
       </template>
     </vs-dialog>
   </div>
-  </div>
 </template>
 
 <script>
+import moment from 'moment';
 import { mapMutations, mapGetters } from "vuex";
 
 export default {
@@ -201,78 +167,71 @@ export default {
       table: {
         max: 10,
       },
-
       request: false,
       error: {},
       active: "",
       option: [],
       page: 1,
       current_page: 1,
-      titleDialog: "Tambah Lokasi",
-      lokasiDialog: false,
+      titleDialog: "Tambah Semester",
+      semesterDialog: false,
       search: '',
       // company_id: JSON.parse(JSON.stringify(this.$auth.user.company_id)),
       isUpdate: false,
       btnLoader: false,
       form: {
         name: '',
-        lat: '',
-        lng: '',
+        start_date: '',
+        end_date: '',
 
       },
-      center: {lat: -6.2, lng: 106.816666},
     };
   },
   mounted() {
     // this.company_id = JSON.parse(JSON.stringify(this.$auth.user.company_id));
-    this.$store.dispatch("lokasi/getAll",{
+    this.$store.dispatch("semester/getAll", {
       //
     });
-    this.$store.dispatch("coordinate/getLocation", { 
-      //
-     });
+    // this.$store.dispatch("coordinate/getLocation", { company_id: this.company_id });
   },
   methods: {
-    // searchData() {
-    //   this.$store.dispatch("office/getAll", {
-    //     company_id: this.company_id,
-    //     search: this.search,
-    //   });
-    // },
+    searchData() {
+      this.$store.dispatch("semester/getAll", {
+        search: this.search,
+      });
+    },
     edit(data) {
       this.form.id = data.id;
       this.form.name = data.name;
-      this.form.lat = Number(data.lat);
-      this.form.lng = Number(data.lng);
-      // this.center = {lat: Number(data.lat), lng: Number(data.lng)}
-      this.lokasiDialog = true;
-      this.titleDialog = "Edit Office";
+      this.form.start_date = data.start_date;
+      this.form.end_date = data.end_date;
+      this.semesterDialog = true;
+      this.titleDialog = "Edit Semester";
       this.isUpdate = true;
     },
     resetForm() {
       this.form = {
         name: '',
-        lat: '',
-        lng: '',
+        start_date: '',
+        end_date: '',
       };
       this.isUpdate = false;
     },
     handleCurrentChange(val) {
-      this.$store.commit("lokasi/setPage", val);
-      this.$store.dispatch("lokasi/getAll", { 
+      this.$store.commit("semester/setPage", val);
+      this.$store.dispatch("semester/getAll", {
         //
-       });
+      });
     },
     onSubmit(type = "store") {
       this.btnLoader = true;
       let formData = new FormData();
       formData.append("name", this.form.name);
-      formData.append("lat", this.form.lat);
-      formData.append("lng", this.form.lng);
-      console.log(this.form)
-      let url = "/lokasi/store";
+      formData.append("start_date", this.form.start_date);
+      formData.append("end_date", this.form.end_date);
+      let url = "/semester/store";
       if (type == "update") {
-        url = `/lokasi/${this.form.id}/update`;
+        url = `/semester/${this.form.id}/update`;
       }
       this.$axios
         .post(url, formData)
@@ -282,16 +241,13 @@ export default {
               title: "Success",
               message: `Berhasil ${
                 type == "store" ? "Menambah" : "Mengubah"
-              } Lokasi`,
+              } Semester`,
             });
             this.resetForm();
-            this.lokasiDialog = false;
-            this.$store.dispatch("lokasi/getAll", { 
+            this.semesterDialog = false;
+            this.$store.dispatch("semester/getAll", {
               //
-             });
-            this.$store.dispatch("coordinate/getLocation", {
-              //
-             });
+            });
           }
         })
         .finally(() => {
@@ -309,7 +265,7 @@ export default {
           }
         });
     },
-    deleteEmployee(id) {
+    deleteSemester(id) {
       this.$swal({
         title: "Perhatian!",
         text: "Apakah anda yakin ingin menghapus data ini?",
@@ -322,19 +278,17 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.$axios
-            .delete(`/lokasi/${id}/delete`)
+            .delete(`/semester/${id}/delete`)
             .then((resp) => {
               if (resp.data.success) {
                 this.$notify.success({
                   title: "Success",
                   message: "Berhasil Menghapus Data",
                 });
-                this.lokasiDialog = false;
-                this.$store.dispatch("lokasi/getAll", {
+                this.semesterDialog = false;
+                this.$store.dispatch("semester/getAll", {
+                  // company_id: this.company_id,
                   defaultPage: true,
-                });
-                this.$store.dispatch("coordinate/getLocation", {
-                  //
                 });
               }
             })
@@ -349,33 +303,29 @@ export default {
             });
         }
       });
-     },
-    updateCoordinates(location) {
-      this.form.lat = location.latLng.lat(),
-      this.form.lng = location.latLng.lng()
     },
-    markers (location) {
-      return {lat: Number(location.lat), lng: Number(location.lng)}
-    },
-    markersDefault(location){
-      return {lat: Number(-6.200000), lng: Number(106.816666) }
-    },
+    // updateCoordinates(location) {
+    //   this.form.lat = location.latLng.lat(),
+    //   this.form.lng = location.latLng.lng()
+    // },
+    // markers (location) {
+    //   return {lat: Number(location.lat), lng: Number(location.lng)}
+    // },
+    // markersDefault(location){
+    //   return {lat: Number(-6.200000), lng: Number(106.816666) }
+    // },
     // check(test) {
     //   console.log(test)
     // }
   },
   computed: {
-    ...mapGetters("lokasi", [
-      "getLokasi",
+    ...mapGetters("semester", [
+      "getSemester",
       "getLoader"
-    ]),
-    ...mapGetters("coordinate", [
-      "getCoordinate",
-      "getLoader"
-    ]),
+    ])
   },
   watch: {
-    getLokasi(newValue, oldValue){
+    getOffices(newValue, oldValue){
       //
     },
     // lat(newValue, oldValue) {
@@ -385,7 +335,7 @@ export default {
     //   this.form.lng = newValue
     // },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

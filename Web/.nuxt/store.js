@@ -30,9 +30,10 @@ let store = {};
   resolveStoreModules(require('..\\store\\drawer.js'), 'drawer.js')
   resolveStoreModules(require('..\\store\\employee.js'), 'employee.js')
   resolveStoreModules(require('..\\store\\goverment.js'), 'goverment.js')
-  resolveStoreModules(require('..\\store\\informasi.js'), 'informasi.js')
-  resolveStoreModules(require('..\\store\\kegiatan.js'), 'kegiatan.js')
-  resolveStoreModules(require('..\\store\\lapor.js'), 'lapor.js')
+  resolveStoreModules(require('..\\store\\jadwal.js'), 'jadwal.js')
+  resolveStoreModules(require('..\\store\\kelas.js'), 'kelas.js')
+  resolveStoreModules(require('..\\store\\lokasi.js'), 'lokasi.js')
+  resolveStoreModules(require('..\\store\\mapel.js'), 'mapel.js')
   resolveStoreModules(require('..\\store\\office.js'), 'office.js')
   resolveStoreModules(require('..\\store\\option.js'), 'option.js')
   resolveStoreModules(require('..\\store\\overtime.js'), 'overtime.js')
@@ -40,6 +41,7 @@ let store = {};
   resolveStoreModules(require('..\\store\\report.js'), 'report.js')
   resolveStoreModules(require('..\\store\\salary.js'), 'salary.js')
   resolveStoreModules(require('..\\store\\schedule.js'), 'schedule.js')
+  resolveStoreModules(require('..\\store\\semester.js'), 'semester.js')
   resolveStoreModules(require('..\\store\\service.js'), 'service.js')
   resolveStoreModules(require('..\\store\\setting.js'), 'setting.js')
   resolveStoreModules(require('..\\store\\shift.js'), 'shift.js')
@@ -47,6 +49,7 @@ let store = {};
   resolveStoreModules(require('..\\store\\shiftpermission.js'), 'shiftpermission.js')
   resolveStoreModules(require('..\\store\\statusP.js'), 'statusP.js')
   resolveStoreModules(require('..\\store\\test.js'), 'test.js')
+  resolveStoreModules(require('..\\store\\todaypelajaran.js'), 'todaypelajaran.js')
   resolveStoreModules(require('..\\store\\upload.js'), 'upload.js')
   resolveStoreModules(require('..\\store\\user.js'), 'user.js')
   resolveStoreModules(require('..\\store\\util.js'), 'util.js')
@@ -68,9 +71,10 @@ let store = {};
       '..\\store\\employee.js',
       '..\\store\\goverment.js',
       '..\\store\\index.js',
-      '..\\store\\informasi.js',
-      '..\\store\\kegiatan.js',
-      '..\\store\\lapor.js',
+      '..\\store\\jadwal.js',
+      '..\\store\\kelas.js',
+      '..\\store\\lokasi.js',
+      '..\\store\\mapel.js',
       '..\\store\\office.js',
       '..\\store\\option.js',
       '..\\store\\overtime.js',
@@ -78,6 +82,7 @@ let store = {};
       '..\\store\\report.js',
       '..\\store\\salary.js',
       '..\\store\\schedule.js',
+      '..\\store\\semester.js',
       '..\\store\\service.js',
       '..\\store\\setting.js',
       '..\\store\\shift.js',
@@ -85,6 +90,7 @@ let store = {};
       '..\\store\\shiftpermission.js',
       '..\\store\\statusP.js',
       '..\\store\\test.js',
+      '..\\store\\todaypelajaran.js',
       '..\\store\\upload.js',
       '..\\store\\user.js',
       '..\\store\\util.js',

@@ -283,28 +283,21 @@
             <!-- Card header -->
             <div slot="header" class="clearfix d-flex justify-content-between">
               <!-- Title -->
-              <h2 style="font-size: 16px">Today Attendances</h2>
+              <h2 style="font-size: 16px">Jadwal Pelajaran Hari Ini</h2>
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               <span
-                >Schedule In : {{ schedule(schedule_in) }}<br />Schedule Out :
-                {{ schedule(schedule_out) }}</span
+                ><br />Jadwal Sekarang : <br /><b>{{ currentPelajaran.mapel }}</b><br />Schedule In :
+                {{ schedule(currentPelajaran.schedule_in) }}</span
               >
             </div>
             <table >
-                <tr :key="i" v-for="(tr, i) in getCheckin.data" :data="tr">
+                <tr :key="i" v-for="(tr, i) in getTodayPelajaran.all_jadwal" :data="tr">
                   <td>
                     <p
                       style="font-weight: bold; font-size: 16px"
                       class="clearfix"
                     >
-                      <img
-                        style="float: left; width: 42px; height: 42px"
-                        class="rounded-circle"
-                        src="https://picsum.photos/125/125/?image=58"
-                        alt="left image"
-                      />
-                      &nbsp; &nbsp;
-                      {{ tr.name }}
+                      {{ tr.pelajaran.name }}
                       <br />
                       &nbsp; &nbsp;
                       <span style="font-weight: normal; font-size: 14px">{{
@@ -319,57 +312,24 @@
                   </td>
                   <td>
                     <vs-avatar
-                      v-if="!tr.checkout_time"
                       size="10"
                       class="align-self-center"
-                      danger
                       style="height: 20px; width: 80px; border-radius: 15px"
                     >
                       <span style="font-weight: ">{{
-                        formatTime(tr.checkin_time)
-                      }}</span>
-                    </vs-avatar>
-
-                    <vs-avatar
-                      v-else
-                      size="10"
-                      class="align-self-center"
-                      success
-                      style="height: 20px; width: 80px; border-radius: 15px"
-                    >
-                      <span style="font-weight: ">{{
-                        formatTime(tr.checkin_time)
+                        schedule(tr.schedule_in)
                       }}</span>
                     </vs-avatar>
                   </td>
                   <td>
                     <vs-avatar
-                      v-if="tr.status == 0"
-                      size="20"
-                      class="align-self-center"
-                      success
-                      style="
-                        height: 20px;
-                        width: 80px;
-                        border-radius: 15px;
-                        margin-left: 20px;
-                      "
-                    >
-                      <span style="font-weight: ">Excelent</span>
-                    </vs-avatar>
-                    <vs-avatar
-                      v-else
                       size="10"
                       class="align-self-center"
-                      danger
-                      style="
-                        height: 20px;
-                        width: 80px;
-                        border-radius: 15px;
-                        margin-left: 20px;
-                      "
+                      style="height: 20px; width: 80px; border-radius: 15px"
                     >
-                      <span style="font-weight: ">Late</span>
+                      <span style="font-weight: ">{{
+                        schedule(tr.schedule_out)
+                      }}</span>
                     </vs-avatar>
                   </td>
                 </tr>
@@ -487,38 +447,47 @@ export default {
         request: "",
         reason: "",
         files: "",
+        jadwal_pelajaran_id:""
       },
       employee_id: "",
       currentTime: null,
       showLoading: false,
       schedule_in: "",
-      schedule_out: "",
       late: false,
+      currentPelajaran: {
+        id:'',
+        mapel:'',
+        schedule_in: ''
+      },
     };
   },
   mounted() {
+    this.data.user_id = JSON.parse(JSON.stringify(this.$auth.user.id))
+    this.$store.dispatch('todaypelajaran/getAll', {
+      user_id: this.data.user_id,
+      pelajaran_id: this.currentPelajaran.id
+    })
     // this.company_id = JSON.parse(JSON.stringify(this.$auth.user.company_id));
-    // this.data.user_id = JSON.parse(JSON.stringify(this.$auth.user.id));
     // this.$axios.get(`/getName?user_id=${this.data.user_id}`).then((resp) => {
     //   this.name = resp.data.data;
     // });
-    // this.$store.dispatch("checkin/getAll", {
-    //   showall: 1,
-    //   // company_id: this.company_id,
-    // });
-    // this.$getLocation({}).then((coordinates) => {
-    //   this.data.lat = coordinates.lat;
-    //   // this.data.lat = -6.7615122;
-    //   this.data.lng = coordinates.lng;
-    //   // this.data.lng = 108.4114873;
-    // });
-    // this.$axios.get(`/check?user_id=${this.data.user_id}`).then((response) => {
-    //   this.$notify.success({
-    //     title: "Check",
-    //     message: response.data.message,
-    //   });
-    //   this.status = response.data.data.status;
-    // });
+    this.$store.dispatch("checkin/getAll", {
+      showall: 1,
+      // company_id: this.company_id,
+    });
+    this.$getLocation({}).then((coordinate) => {
+      this.data.lat = coordinate.lat;
+      // this.data.lat = -6.7615122;
+      this.data.lng = coordinate.lng;
+      // this.data.lng = 108.4114873;
+    });
+    this.$axios.get(`/check?user_id=${this.data.user_id}`).then((response) => {
+      this.$notify.success({
+        title: "Check",
+        message: response.data.message,
+      });
+      this.status = response.data.data.status;
+    });
     // this.$axios
     //   .get(`/todayShiftEmployee?user_id=${this.data.user_id}`)
     //   .then((response) => {
@@ -541,7 +510,7 @@ export default {
         this.data.request = 2;
       }
       this.$axios
-        .post("/checkin", this.data)
+        .post("/absen", this.data)
         .then((response) => {
           this.$notify.success({
             title: "Berhasil",
@@ -683,6 +652,21 @@ export default {
       "getCheckin",
       "getLoader"
     ]),
+    ...mapGetters('todaypelajaran', [
+      'getTodayPelajaran',
+      'getLoader'
+    ])
+  },
+  watch: {
+    getTodayPelajaran: {
+      handler(val) {
+        this.currentPelajaran.id = val.current_jadwal.pelajaran.id
+        this.data.jadwal_pelajaran_id = val.current_jadwal.pelajaran.id
+        this.currentPelajaran.mapel = val.current_jadwal.pelajaran.name
+        this.currentPelajaran.schedule_in = val.current_jadwal.schedule_in
+      },
+      deep: true
+    }
   },
 };
 </script>
